@@ -32,3 +32,6 @@ alias hdu="helm dependency update"
 
 # ruby
 alias ber="bundle exec rspec"
+
+# ssh aliases
+source "./projects/dotfiles/.ssh_aliases"
