@@ -1,7 +1,7 @@
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-alias reload="source ~/.bash_profile"
+alias reload="source ~/.zshrc"
 
 # git
 alias gcm="git commit -m"
@@ -32,13 +32,3 @@ alias hdu="helm dependency update"
 
 # ruby
 alias ber="bundle exec rspec"
-
-# sb
-alias sb="ssh steve@10.0.0.154 -p 27595"
-alias sbh="ssh steve@192.168.1.190 -p 27595"
-alias sbr="ssh steve@71.225.12.117 -p 27595"
-
-# sb-copy scp -P 27595 adam_openvpn.zip steve@10.0.0.154:/home/steve
-
-# ssh 27595
-# ftp 46412

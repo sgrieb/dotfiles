@@ -3,7 +3,6 @@
 # Please adapt and uncomment the following lines:
 	name = Steve Grieb
 	email = sgrieb64@gmail.com
-	# email = steve@Steves-MBP.fios-router.home
 [core]
 	excludesfile = /Users/steve/.gitignore_global
 [difftool "sourcetree"]
