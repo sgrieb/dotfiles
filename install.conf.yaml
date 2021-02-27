@@ -1,7 +1,6 @@
 - clean: ['~']
 
 - link:
-    ~/.profile: profile
     ~/.gitconfig: gitconfig
     ~/.tmux.conf: tmux.conf
     ~/.zshrc: zshrc
