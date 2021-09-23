@@ -64,3 +64,5 @@ alias tf="terraform"
 alias lzd="lazydocker"
 
 export AWS_DEFAULT_REGION=us-east-2
+# add aliases quick
+alias a="vim ~/projects/dotfiles/zshrc"
