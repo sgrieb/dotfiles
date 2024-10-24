@@ -1,4 +1,5 @@
 
 # New system setup
 
--  ./install-[YOUR_OS]
+- `./install`
+- install the zsh theme `https://github.com/romkatv/powerlevel10k`
