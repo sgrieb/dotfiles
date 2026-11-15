@@ -18,7 +18,8 @@
     "mode": "zen"
   },
   "notifications": true,
-  "hints": true,
+  "hints": false,
+  "suggestNextPrompt": false,
   "modelSlashCommands": true,
   "steering": true,
   "rewind": true,
