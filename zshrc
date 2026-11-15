@@ -77,10 +77,12 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 
 # Node: nvm's default version (~/.nvm/alias/default) on the PATH without loading nvm, which is slow.
-_nvm_default=$(<"$HOME/.nvm/alias/default" 2>/dev/null)
-_nvm_dirs=("$HOME"/.nvm/versions/node/v${_nvm_default#v}*(N/nOn))
-(( ${#_nvm_dirs} )) && export PATH="${_nvm_dirs[1]}/bin:$PATH"
-unset _nvm_default _nvm_dirs
+if [[ -r $HOME/.nvm/alias/default ]]; then
+  _nvm_default=$(<"$HOME/.nvm/alias/default")
+  _nvm_dirs=("$HOME"/.nvm/versions/node/v${_nvm_default#v}*(N/nOn))
+  (( ${#_nvm_dirs} )) && export PATH="${_nvm_dirs[1]}/bin:$PATH"
+  unset _nvm_default _nvm_dirs
+fi
 alias claude='claude --dangerously-skip-permissions'
 
 # Opens the three Timeline tabs in Ghostty: Claude, CPU, Todos.
