@@ -5,8 +5,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+
 alias reload="source ~/.zshrc"
 
 # git
@@ -16,6 +16,7 @@ alias gp="git push"
 alias ga="git add ."
 alias gd="git diff"
 alias gc="git checkout -- "
+alias gb="git branch"
 
 # docker
 alias d=docker
@@ -49,20 +50,38 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# eval "$(rbenv init -)"
-
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
 # heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/Users/steve/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+HEROKU_AC_ZSH_SETUP_PATH=$HOME/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
 # Terraform
 alias tf="terraform"
 
 alias lzd="lazydocker"
 
-export AWS_DEFAULT_REGION=us-east-2
 # add aliases quick
 alias a="vim ~/projects/dotfiles/zshrc"
+
+# react native
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$ANDROID_HOME/platform-tools:$PATH
+
+export PATH="$HOME/.local/bin:$PATH"
+
+# Node: nvm's default version (~/.nvm/alias/default) on the PATH without loading nvm, which is slow.
+_nvm_default=$(<"$HOME/.nvm/alias/default" 2>/dev/null)
+_nvm_dirs=("$HOME"/.nvm/versions/node/v${_nvm_default#v}*(N/nOn))
+(( ${#_nvm_dirs} )) && export PATH="${_nvm_dirs[1]}/bin:$PATH"
+unset _nvm_default _nvm_dirs
+alias claude='claude --dangerously-skip-permissions'
+
+# Opens the three Timeline tabs in Ghostty: Claude, CPU, Todos.
+alias timeline="timeline-open"
+
+# The nvm command loads nvm on first use, so new shells stay fast.
+export NVM_DIR="$HOME/.nvm"
+nvm() {
+  unset -f nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+  nvm "$@"
+}
