@@ -1,3 +1,9 @@
+# Over SSH, go straight into a tmux session that survives a dropped connection.
+# Detach with ` d. For a plain shell: ssh -t host NO_TMUX=1 zsh -l
+if [[ -n $SSH_CONNECTION && -z $TMUX && -z $NO_TMUX && -o interactive ]] && command -v tmux >/dev/null; then
+  exec tmux new-session -A -s ssh
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -41,11 +47,12 @@ alias hdu="helm dependency update"
 alias ber="bundle exec rspec"
 
 # ssh aliases
-touch ~/projects/dotfiles/.ssh_aliases
-source ~/projects/dotfiles/.ssh_aliases
+DOTFILES=${${(%):-%x}:A:h}  # this repo, wherever it is cloned
+touch "$DOTFILES/.ssh_aliases"
+source "$DOTFILES/.ssh_aliases"
 
 # zsh
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+[[ -f ~/powerlevel10k/powerlevel10k.zsh-theme ]] && source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -59,11 +66,13 @@ alias tf="terraform"
 alias lzd="lazydocker"
 
 # add aliases quick
-alias a="vim ~/projects/dotfiles/zshrc"
+alias a="vim $DOTFILES/zshrc"
 
 # react native
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$ANDROID_HOME/platform-tools:$PATH
+if [[ -d $HOME/Library/Android/sdk ]]; then
+  export ANDROID_HOME=$HOME/Library/Android/sdk
+  export PATH=$ANDROID_HOME/platform-tools:$PATH
+fi
 
 export PATH="$HOME/.local/bin:$PATH"
 

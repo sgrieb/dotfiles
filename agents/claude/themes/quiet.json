@@ -1,0 +1,8 @@
+{
+  "name": "Quiet",
+  "base": "dark",
+  "overrides": {
+    "promptBorder": "#1d1e1d",
+    "promptBorderShimmer": "#1d1e1d"
+  }
+}

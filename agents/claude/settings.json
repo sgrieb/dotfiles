@@ -1,0 +1,36 @@
+{
+  "theme": "custom:quiet",
+  "skipDangerousModePermissionPrompt": true,
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/ready-sound.sh 2>/dev/null || true",
+            "async": true
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/usage/statusline.sh"
+  },
+  "cleanupPeriodDays": 36500,
+  "promptSuggestionEnabled": false,
+  "spinnerTipsEnabled": false,
+  "prStatusFooterEnabled": false,
+  "showMessageTimestamps": false,
+  "showTurnDuration": false,
+  "showThinkingSummaries": false,
+  "prefersReducedMotion": true,
+  "showExpandedTodos": false,
+  "briefTranscript": true,
+  "syntaxHighlightingDisabled": true,
+  "maxProseWidth": 80,
+  "env": {
+    "CLAUDE_CODE_PLUGIN_DIRS": "~/.claude/mods/quiet-mode-hint"
+  }
+}

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-sudo apt install -y zsh
+sudo apt update
+sudo apt install -y zsh tmux git python3 curl
 chsh -s "$(which zsh)"
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+[ -d ~/powerlevel10k ] || git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k

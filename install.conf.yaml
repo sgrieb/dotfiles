@@ -1,3 +1,8 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
 - clean: ['~']
 
 - link:
@@ -6,4 +11,19 @@
     ~/.zshrc: zshrc
     ~/.p10k.zsh: p10k.zsh
 
+# Agent settings. These replace whatever file is there (force).
+- link:
+    ~/.claude/settings.json: {path: agents/claude/settings.json, force: true}
+    ~/.claude/ready-sound.sh: {path: agents/claude/ready-sound.sh, force: true}
+    ~/.claude/themes/quiet.json: {path: agents/claude/themes/quiet.json, force: true}
+    ~/.claude/usage/statusline.sh: {path: agents/claude/usage/statusline.sh, force: true}
+    ~/.claude/usage/indicator.sh: {path: agents/claude/usage/indicator.sh, force: true}
+    ~/.claude/mods/quiet-mode-hint/tsconfig.json: {path: agents/claude/mods/quiet-mode-hint/tsconfig.json, force: true}
+    ~/.claude/mods/quiet-mode-hint/hooks/hooks.json: {path: agents/claude/mods/quiet-mode-hint/hooks/hooks.json, force: true}
+    ~/.claude/mods/quiet-mode-hint/hooks/register.ts: {path: agents/claude/mods/quiet-mode-hint/hooks/register.ts, force: true}
+    ~/.cursor/hooks.json: {path: agents/cursor/hooks.json, force: true}
+    ~/.cursor/hooks/ready-sound.sh: {path: agents/cursor/hooks/ready-sound.sh, force: true}
 
+# Cursor and Codex keep sign-in and machine state in their settings files: merge, don't link.
+- shell:
+    - [python3 agents/merge-settings.py, Merging Cursor and Codex settings]

@@ -1,0 +1,6 @@
+# Shared Codex settings. install merges these top-level keys into ~/.codex/config.toml;
+# Codex keeps machine-specific state (trusted project paths) in that file, so it is not linked.
+sandbox_mode = "danger-full-access"
+approval_policy = "never"
+model = "gpt-6.1-sol"
+model_reasoning_effort = "medium"
